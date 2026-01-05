@@ -125,13 +125,21 @@ export const getInboxMessages = async (empId, options = {}) => {
   const gmail = await googleOAuth.getGmailClient(empId);
   const { maxResults = 20, pageToken, q = "" } = options;
 
-  const response = await gmail.users.messages.list({
+  // Build query - if custom query provided, use it; otherwise default to inbox
+  const listParams = {
     userId: "me",
     maxResults,
     pageToken,
-    q: q || "in:inbox",
-    labelIds: ["INBOX"],
-  });
+  };
+
+  // Only use labelIds OR q, not both (they can conflict)
+  if (q) {
+    listParams.q = q;
+  } else {
+    listParams.labelIds = ["INBOX"];
+  }
+
+  const response = await gmail.users.messages.list(listParams);
 
   if (!response.data.messages) {
     return { messages: [], nextPageToken: null };

@@ -169,13 +169,18 @@ export const disconnectEmail = async (req, res, next) => {
 export const getGmailInbox = async (req, res, next) => {
   try {
     const { maxResults, pageToken, q } = req.query;
+    console.log(`📧 Fetching inbox for employee ${req.user.empId}`);
+    
     const result = await gmailService.getInboxMessages(req.user.empId, {
       maxResults: parseInt(maxResults) || 20,
       pageToken,
       q,
     });
+    
+    console.log(`📧 Found ${result.messages?.length || 0} messages`);
     res.json(result);
   } catch (error) {
+    console.error("❌ Gmail inbox error:", error.message, error.stack);
     if (error.message === "EMAIL_NOT_CONNECTED") {
       return res.status(403).json({
         message: "Please connect your Gmail account",
