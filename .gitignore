@@ -1,0 +1,8 @@
+.env
+node_modules/
+backend/scripts/
+.kiro/
+.vscode/
+*.md
+.backup
+crm_google_oauth.json
