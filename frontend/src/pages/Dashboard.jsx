@@ -137,7 +137,7 @@ const Dashboard = () => {
     setTakeActionData({ contact, targetStatus });
   };
 
-  const handleConfirmPromotion = async (contact, targetStatus, expectedValue) => {
+  const handleConfirmPromotion = async (contact, targetStatus, additionalData) => {
     try {
       setSubmitting(true);
       setError(null);
@@ -147,7 +147,7 @@ const Dashboard = () => {
       } else if (targetStatus === 'SQL') {
         await promoteToSQL(contact.contact_id);
       } else if (targetStatus === 'OPPORTUNITY') {
-        await convertToOpportunity(contact.contact_id, expectedValue);
+        await convertToOpportunity(contact.contact_id, additionalData ? additionalData.value : null);
       }
       
       await fetchContacts();
