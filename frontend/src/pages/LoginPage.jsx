@@ -302,7 +302,7 @@ const LoginPage = () => {
           </div>
           
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h1>
-          <p className="text-gray-500">Sign in to your CRM account</p>
+          <p className="text-gray-500">Sign in to your Sales Pilot account</p>
         </div>
 
         {/* Error Message */}
