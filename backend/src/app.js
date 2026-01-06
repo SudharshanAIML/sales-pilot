@@ -26,6 +26,7 @@ import feedbackRoutes from "./modules/feedback/feedback.routes.js";
 import emailRoutes from "./modules/emails/email.routes.js";
 import analyticsRoutes from "./modules/analytics/analytics.routes.js";
 import taskRoutes from "./modules/tasks/task.routes.js";
+import outreachRoutes from "./modules/outreach/outreach.routes.js";
 
 // Initialize Express app
 const app = express();
@@ -146,6 +147,9 @@ app.use("/api/analytics", analyticsRoutes);
 // Task/Calendar management routes
 app.use("/api/tasks", taskRoutes);
 
+// AI Outreach routes (RAG-powered email generation)
+app.use("/api/outreach", outreachRoutes);
+
 /* =====================================================
    404 HANDLER
 ===================================================== */
@@ -167,7 +171,7 @@ app.use(errorHandler);
    GRACEFUL SHUTDOWN
 ===================================================== */
 
-const gracefulShutdown = (signal) => {
+const gracefulShutdown = (signal, server) => {
   console.log(`\n🛑 Received ${signal}. Shutting down gracefully...`);
   
   // Close server
@@ -236,12 +240,20 @@ const server = app.listen(PORT, HOST, () => {
    • GET  /api/analytics/dashboard   - Dashboard stats
    • GET  /api/analytics/funnel      - Pipeline funnel
    • GET  /api/analytics/performance - Employee performance
+
+   🤖 AI Outreach (RAG-powered with Groq):
+   • POST /api/outreach/documents    - Upload company docs
+   • GET  /api/outreach/documents    - List documents
+   • GET  /api/outreach/rag-status   - RAG configuration status
+   • GET  /api/outreach/contacts     - Get contacts by threshold
+   • POST /api/outreach/generate     - Generate AI emails
+   • POST /api/outreach/send         - Send generated emails
   `);
 });
 
-// Handle shutdown signalsanagement.f.aivencloud.com:12247/defaultdb?ssl-mode=REQUIRED
-process.on("SIGTERM", () => gracefulShutdown("SIGTERM"));
-process.on("SIGINT", () => gracefulShutdown("SIGINT"));
+// Handle shutdown signals
+process.on("SIGTERM", () => gracefulShutdown("SIGTERM", server));
+process.on("SIGINT", () => gracefulShutdown("SIGINT", server));
 
 // Handle uncaught errors
 process.on("uncaughtException", (err) => {
