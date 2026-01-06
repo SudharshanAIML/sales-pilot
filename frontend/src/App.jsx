@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import OnboardingPage from './pages/OnboardingPage';
 import Dashboard from './pages/Dashboard';
@@ -78,6 +79,11 @@ const PublicRoute = ({ children }) => {
   return children;
 };
 
+// Landing Route Component (accessible to everyone, no redirects)
+const LandingRoute = ({ children }) => {
+  return children;
+};
+
 function App() {
   const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
@@ -86,6 +92,14 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
+            <Route
+              path="/"
+              element={
+                <LandingRoute>
+                  <LandingPage />
+                </LandingRoute>
+              }
+            />
             <Route
               path="/login"
               element={
@@ -134,8 +148,7 @@ function App() {
                 </AuthenticatedRoute>
               }
             />
-            <Route path="/" element={<Navigate to="/login" />} />
-            <Route path="*" element={<Navigate to="/login" />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
