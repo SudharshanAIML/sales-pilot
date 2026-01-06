@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronRight, Plus, Monitor, Users, BarChart3, ShieldCheck, Sun, Moon } from 'lucide-react';
+import { ChevronRight, Plus, Monitor, Users, BarChart3, ShieldCheck, Sun, Moon, Check, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Navbar = () => {
@@ -54,25 +54,8 @@ const Hero = () => {
           Workforce
         </h1>
         <p className="mt-8 text-lg text-slate-600 max-w-md leading-relaxed">
-          Autonomous AI Sales Agents designed to supercharge your revenue teams - Prospecting, Outreach, Negotiation, Closing, and beyond.
+          An autonomous AI sales system that understands customers, decides actions, and executes outreach end-to-end — proactively driving revenue while respecting customer intent, control, and trust.
         </p>
-        <div className="mt-10 flex gap-4">
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => navigate('/login')}
-            className="bg-gradient-to-r from-sky-500 to-sky-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-2xl hover:shadow-sky-500/40 transition-all"
-          >
-            Request Access
-          </motion.button>
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-white text-sky-600 px-8 py-4 rounded-full font-semibold border-2 border-sky-600 hover:bg-sky-50 transition-colors"
-          >
-            Book a demo
-          </motion.button>
-        </div>
       </motion.div>
 
       <div className="relative h-[500px] w-full">
@@ -275,6 +258,212 @@ const Features = () => (
   </section>
 );
 
+const ComparisonSection = () => {
+  const [selectedCompetitor, setSelectedCompetitor] = React.useState('Salesforce');
+  
+  const competitors = ['Salesforce', 'Odoo', 'HubSpot', 'Zoho CRM'];
+  
+  const features = [
+    {
+      id: 1,
+      title: 'Company-Document RAG Email Personalization',
+      description: 'AI-powered email personalization using company documents and context',
+      salespilot: true,
+      competitors: {
+        'Salesforce': false,
+        'Odoo': false,
+        'HubSpot': false,
+        'Zoho CRM': false
+      }
+    },
+    {
+      id: 2,
+      title: 'User-Controlled AI Message Tone + Frequency',
+      description: 'Customize AI communication style and cadence to match your brand',
+      salespilot: true,
+      competitors: {
+        'Salesforce': false,
+        'Odoo': false,
+        'HubSpot': false,
+        'Zoho CRM': false
+      }
+    },
+    {
+      id: 3,
+      title: 'Explicit Assist Mode vs Full Pilot Mode Toggle',
+      description: 'Switch between AI assistance and full autonomous operation',
+      salespilot: true,
+      competitors: {
+        'Salesforce': 'partial',
+        'Odoo': false,
+        'HubSpot': false,
+        'Zoho CRM': false
+      }
+    },
+    {
+      id: 4,
+      title: 'Independent Agentic Decision Engine',
+      description: 'AI decides who and when to contact, not just recommendations',
+      salespilot: true,
+      competitors: {
+        'Salesforce': false,
+        'Odoo': false,
+        'HubSpot': false,
+        'Zoho CRM': false
+      }
+    },
+    {
+      id: 5,
+      title: 'Fully Autonomous End-to-End Sales Execution',
+      description: 'Complete automation from prospecting to booking and CRM updates',
+      salespilot: true,
+      competitors: {
+        'Salesforce': false,
+        'Odoo': false,
+        'HubSpot': false,
+        'Zoho CRM': false
+      }
+    }
+  ];
+
+  return (
+    <section className="py-32 px-10 bg-white">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="w-1.5 h-1.5 bg-sky-600 rounded-full" />
+            <span className="text-[10px] font-bold text-sky-600 uppercase tracking-widest">Why Choose SalesPilot</span>
+          </div>
+          <h2 className="text-5xl font-bold text-slate-900 mb-6">
+            Features that set us <br />
+            <span className="bg-gradient-to-r from-sky-400 to-sky-600 bg-clip-text text-transparent">apart from the rest.</span>
+          </h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            Compare SalesPilot's advanced AI capabilities with traditional CRM platforms
+          </p>
+        </motion.div>
+
+        {/* Competitor Selector */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex justify-center mb-12"
+        >
+          <div className="inline-flex bg-sky-50 rounded-full p-2 border border-sky-100">
+            {competitors.map((competitor) => (
+              <button
+                key={competitor}
+                onClick={() => setSelectedCompetitor(competitor)}
+                className={`px-6 py-3 text-sm font-semibold rounded-full transition-all ${
+                  selectedCompetitor === competitor
+                    ? 'bg-gradient-to-r from-sky-500 to-sky-600 text-white shadow-lg'
+                    : 'text-slate-600 hover:text-sky-600'
+                }`}
+              >
+                {competitor}
+              </button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Feature Comparison Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-white border border-sky-100 rounded-3xl p-8 hover:shadow-xl hover:shadow-sky-500/10 transition-all"
+            >
+              <div className="flex items-start justify-between mb-4">
+                <h3 className="text-xl font-bold text-slate-900 flex-1">{feature.title}</h3>
+              </div>
+              
+              <p className="text-sm text-slate-600 mb-6">{feature.description}</p>
+
+              {/* Comparison Row */}
+              <div className="flex items-center justify-between pt-6 border-t border-sky-100">
+                {/* SalesPilot */}
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-gradient-to-r from-sky-500 to-sky-600 rounded-full flex items-center justify-center">
+                      <Check className="text-white" size={16} strokeWidth={3} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-900">SalesPilot</p>
+                      <p className="text-[10px] text-green-600 font-semibold">Available</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Competitor */}
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
+                    {feature.competitors[selectedCompetitor] === 'partial' ? (
+                      <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
+                        <div className="w-3 h-0.5 bg-amber-600 rounded" />
+                      </div>
+                    ) : feature.competitors[selectedCompetitor] ? (
+                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                        <Check className="text-green-600" size={16} strokeWidth={3} />
+                      </div>
+                    ) : (
+                      <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center">
+                        <X className="text-slate-400" size={16} strokeWidth={3} />
+                      </div>
+                    )}
+                    <div>
+                      <p className="text-xs font-bold text-slate-900">{selectedCompetitor}</p>
+                      <p className={`text-[10px] font-semibold ${
+                        feature.competitors[selectedCompetitor] === 'partial' 
+                          ? 'text-amber-600' 
+                          : feature.competitors[selectedCompetitor]
+                          ? 'text-green-600'
+                          : 'text-slate-400'
+                      }`}>
+                        {feature.competitors[selectedCompetitor] === 'partial' 
+                          ? 'Partial' 
+                          : feature.competitors[selectedCompetitor]
+                          ? 'Available'
+                          : 'Not Available'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center mt-16"
+        >
+          <p className="text-slate-600 mb-6">Ready to experience the future of sales automation?</p>
+          <button className="bg-gradient-to-r from-sky-500 to-sky-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-2xl hover:shadow-sky-500/40 transition-all hover:scale-105">
+            Start Your Free Trial
+          </button>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 const Footer = () => (
   <footer className="py-12 px-10 border-t border-sky-100 bg-gradient-to-b from-white to-sky-50/30">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 font-medium">
@@ -295,6 +484,7 @@ export default function LandingPage() {
       <Navbar />
       <Hero />
       <Features />
+      <ComparisonSection />
       <Footer />
     </div>
   );
