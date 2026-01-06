@@ -238,11 +238,12 @@ export const sendOutreachEmails = async (empId, emails) => {
         continue;
       }
 
-      // Create draft and send
+      // Create draft and send - use htmlBody if available, otherwise body
       const draft = await gmailService.createDraft(empId, {
         to: emailData.to,
         subject: emailData.subject,
-        body: emailData.body,
+        body: emailData.htmlBody || emailData.body,
+        isHtml: !!emailData.htmlBody,
       });
 
       const sent = await gmailService.sendDraft(empId, draft.draftId);

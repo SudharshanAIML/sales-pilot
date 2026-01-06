@@ -171,6 +171,7 @@ const AIOutreach = () => {
         to: e.contactEmail,
         subject: e.email.subject,
         body: e.email.body,
+        htmlBody: e.email.htmlBody,
       }));
 
     if (emailsToSend.length === 0) {

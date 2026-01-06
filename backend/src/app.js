@@ -248,6 +248,12 @@ const server = app.listen(PORT, HOST, () => {
    • GET  /api/outreach/contacts     - Get contacts by threshold
    • POST /api/outreach/generate     - Generate AI emails
    • POST /api/outreach/send         - Send generated emails
+
+   ✈️  Auto Pilot:
+   • POST /api/outreach/autopilot/start  - Start autopilot
+   • POST /api/outreach/autopilot/stop   - Stop autopilot
+   • GET  /api/outreach/autopilot/status - Get autopilot status
+   • GET  /api/outreach/autopilot/log    - Get activity log
   `);
 });
 

@@ -1,0 +1,152 @@
+COMPANY_NAME: Savory & Sage Premium Culinary Enterprises Pvt. Ltd.
+TRADING_NAME: Savory & Sage
+INDUSTRY: Premium Culinary Products Retail (D2C E-Commerce)
+FOUNDED_YEAR: 2019
+COMPANY_SIZE: SME (45 employees)
+HEADQUARTERS: Bangalore, Karnataka, India
+GEOGRAPHY_SERVED: India (Pan-India delivery), selective export to South Asia
+
+OFFICIAL_WEBSITE: https://www.savoryandsage.com
+CONTACT_EMAIL: info@savoryandsage.com
+SUPPORT_WHATSAPP: +91-9876-543-210
+SOCIAL_MEDIA: Instagram, Facebook, YouTube (@SavoryAndSage)
+
+==================================================
+VISION
+==================================================
+To democratize access to premium, authentic culinary products and empower individuals to create restaurant-quality meals at home.
+
+==================================================
+MISSION
+==================================================
+To source, curate, and deliver high-quality culinary products with transparency, affordability, and reliability for home cooks and professional kitchens across India.
+
+==================================================
+CORE_PROBLEMS_SOLVED
+==================================================
+- Difficulty finding authentic, high-quality culinary products
+- High prices without quality guarantees
+- Fragmented sourcing from multiple vendors
+- Lack of transparency in sourcing and expiry
+- Inconsistent supply chains and stock-outs
+
+==================================================
+CORE_PHILOSOPHY
+==================================================
+- Quality over profit
+- Complete transparency in ingredients and sourcing
+- Fair pricing via direct farmer relationships
+- Customer-centric service
+- Sustainability and eco-friendly packaging
+
+==================================================
+PRODUCT_LINE_1: HERITAGE SPICE COLLECTION
+==================================================
+DESCRIPTION:
+Freshly ground, premium spices sourced directly from certified Indian farmers.
+
+KEY_FEATURES:
+- Hand-selected
+- Small-batch grinding
+- Airtight glass or kraft packaging
+- 18-month shelf life
+- FSSAI certified
+- No preservatives or additives
+
+TARGET_CUSTOMERS:
+Home cooks, professional chefs, restaurants, nutritionists
+
+AVAILABLE_SPICES:
+Turmeric, Cumin, Coriander, Fenugreek, Asafoetida, Cardamom, Cloves, Cinnamon,
+Black Pepper, Nutmeg, Star Anise, Mace, Fennel, Mustard Seeds, Chili varieties,
+Garam Masala blends, Sambar Powder, Goda Masala, Amchur
+
+==================================================
+PRODUCT_LINE_2: SPECIALTY COOKING OILS & GHEE
+==================================================
+DESCRIPTION:
+Cold-pressed oils and traditional ghee sourced from organic and certified producers.
+
+KEY_FEATURES:
+- Cold-pressed below 40°C
+- No chemical extraction
+- Glass bottle packaging
+- Temperature-controlled storage
+
+PRODUCTS_INCLUDE:
+Coconut Oil, A2 Ghee, Grass-fed Cow Ghee, Groundnut Oil, Mustard Oil,
+Sesame Oil, Olive Oil, Sunflower Oil
+
+==================================================
+PRODUCT_LINE_3: GOURMET INGREDIENTS & PANTRY ESSENTIALS
+==================================================
+DESCRIPTION:
+Specialty Indian and global ingredients for restaurant-quality cooking.
+
+CATEGORIES:
+- Indian specialty ingredients
+- Global imports
+- Condiments and pastes
+- Specialty flours and thickeners
+- Natural sweeteners
+
+==================================================
+PRODUCT_LINE_4: ORGANIC & HEALTH SUPERFOODS
+==================================================
+DESCRIPTION:
+Certified organic, nutrient-dense superfoods with full sourcing transparency.
+
+CATEGORIES:
+Seeds & Nuts, Grains & Legumes, Powders & Extracts, Dried Fruits, Specialty Superfoods
+
+CERTIFICATIONS:
+NPOP / International Organic Certifications
+
+==================================================
+PRODUCT_LINE_5: CULINARY KITS & INGREDIENT BUNDLES
+==================================================
+DESCRIPTION:
+Pre-curated kits for cuisine-specific cooking and occasions.
+
+KIT_TYPES:
+- North Indian Masala Kit
+- South Indian Sambar Kit
+- Asian Fusion Kit
+- Mediterranean Kit
+- Mexican & Latin Kit
+- Ayurvedic Wellness Kit
+- Festive and Meal Prep Kits
+
+==================================================
+ORDERING_CHANNELS
+==================================================
+- Website
+- WhatsApp
+- Instagram DM
+- Phone
+
+==================================================
+PAYMENT_METHODS
+==================================================
+UPI, Credit/Debit Cards, Net Banking, Wallets, COD
+
+==================================================
+SUPPORT_CHANNELS
+==================================================
+WhatsApp: 9 AM – 9 PM IST
+Email: support@savoryandsage.com
+Phone: 080-4950-7243
+AI Chatbot: 24/7
+
+==================================================
+DATA_PRIVACY_AND_COMPLIANCE
+==================================================
+- FSSAI compliant
+- India DPDP Act 2023 compliant
+- GDPR compliant for EU customers
+- PCI DSS Level 1 certified
+- SSL/TLS 256-bit encryption
+
+==================================================
+END_OF_DOCUMENT
+==================================================

@@ -9,6 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate:add-department": "node scripts/add-department-field.js",
     "migrate:outreach": "node scripts/migrate-outreach-tables.js",
+    "migrate:autopilot": "node scripts/migrate-autopilot-tables.js",
     "test:onboarding": "node scripts/test-onboarding.js",
     "check:setup": "node scripts/check-setup.js"
   },

@@ -12,6 +12,7 @@ import {
     Loader2,
     ChevronLeft,
     Sparkles,
+    Plane,
 } from 'lucide-react';
 import {
     getConnectionStatus,
@@ -24,13 +25,14 @@ import {
 import EmailList from './EmailList';
 import EmailDetail from './EmailDetail';
 import ComposeEmail from './ComposeEmail';
-import { AIOutreach } from '../outreach';
+import { AIOutreach, AutoPilot } from '../outreach';
 
 const TABS = [
     { id: 'inbox', label: 'Inbox', icon: Inbox },
     { id: 'sent', label: 'Sent', icon: Send },
     { id: 'drafts', label: 'Drafts', icon: FileEdit },
     { id: 'ai-outreach', label: 'AI Outreach', icon: Sparkles },
+    { id: 'autopilot', label: 'Auto Pilot', icon: Plane },
 ];
 
 const GmailView = () => {
@@ -293,7 +295,7 @@ const GmailView = () => {
                 </div>
 
                 {/* Search */}
-                {activeTab !== 'drafts' && activeTab !== 'ai-outreach' && (
+                {activeTab !== 'drafts' && activeTab !== 'ai-outreach' && activeTab !== 'autopilot' && (
                     <form onSubmit={handleSearch} className="relative">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                         <input
@@ -308,7 +310,7 @@ const GmailView = () => {
             </div>
 
             {/* Error */}
-            {error && activeTab !== 'ai-outreach' && (
+            {error && activeTab !== 'ai-outreach' && activeTab !== 'autopilot' && (
                 <div className="mx-4 mt-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2">
                     <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
                     <p className="text-sm text-red-700">{error}</p>
@@ -319,6 +321,10 @@ const GmailView = () => {
             {activeTab === 'ai-outreach' ? (
                 <div className="p-4">
                     <AIOutreach />
+                </div>
+            ) : activeTab === 'autopilot' ? (
+                <div className="p-4">
+                    <AutoPilot />
                 </div>
             ) : (
                 <div className="flex h-[calc(100vh-20rem)] min-h-[400px]">

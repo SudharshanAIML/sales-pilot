@@ -1,6 +1,7 @@
 import { Router } from "express";
 import multer from "multer";
 import * as outreachController from "./outreach.controller.js";
+import * as autopilotController from "./autopilot.controller.js";
 import { authenticateEmployee } from "../../middlewares/auth.middleware.js";
 
 const router = Router();
@@ -12,7 +13,7 @@ const upload = multer({
   limits: {
     fileSize: 10 * 1024 * 1024, // 10MB limit
   },
-  fileFilter: (req, file, cb) => {
+  fileFilter: (_req, file, cb) => {
     const allowedTypes = [
       "application/pdf",
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -120,6 +121,54 @@ router.post(
   "/send",
   authenticateEmployee,
   outreachController.sendEmails
+);
+
+/* ---------------------------------------------------
+   AUTOPILOT
+--------------------------------------------------- */
+
+/**
+ * @route   POST /outreach/autopilot/start
+ * @desc    Start autopilot mode
+ * @access  Employee
+ */
+router.post(
+  "/autopilot/start",
+  authenticateEmployee,
+  autopilotController.startAutopilot
+);
+
+/**
+ * @route   POST /outreach/autopilot/stop
+ * @desc    Stop autopilot mode
+ * @access  Employee
+ */
+router.post(
+  "/autopilot/stop",
+  authenticateEmployee,
+  autopilotController.stopAutopilot
+);
+
+/**
+ * @route   GET /outreach/autopilot/status
+ * @desc    Get autopilot status
+ * @access  Employee
+ */
+router.get(
+  "/autopilot/status",
+  authenticateEmployee,
+  autopilotController.getAutopilotStatus
+);
+
+/**
+ * @route   GET /outreach/autopilot/log
+ * @desc    Get autopilot activity log
+ * @access  Employee
+ */
+router.get(
+  "/autopilot/log",
+  authenticateEmployee,
+  autopilotController.getAutopilotLog
 );
 
 export default router;

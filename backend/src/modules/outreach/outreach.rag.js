@@ -10,9 +10,8 @@ dotenv.config();
 // Initialize Groq LLM with the specified model
 const llm = new ChatGroq({
   apiKey: process.env.GROQ_API_KEY,
-  model: process.env.GROQ_MODEL || "llama-3.3-70b-versatile",
+  model: "llama-3.1-70b-versatile",
   temperature: 0.7,
-  maxTokens: 4096,
 });
 
 /**
@@ -22,15 +21,15 @@ const llm = new ChatGroq({
 const calculateSimilarity = (text1, text2) => {
   const words1 = text1.toLowerCase().split(/\s+/).filter(w => w.length > 3);
   const words2 = text2.toLowerCase().split(/\s+/).filter(w => w.length > 3);
-  
+
   const set1 = new Set(words1);
   const set2 = new Set(words2);
-  
+
   let intersection = 0;
   for (const word of set1) {
     if (set2.has(word)) intersection++;
   }
-  
+
   const union = set1.size + set2.size - intersection;
   return union > 0 ? intersection / union : 0;
 };
@@ -76,7 +75,7 @@ export const similaritySearch = async (companyId, query, topK = 5) => {
 };
 
 /**
- * Email generation prompt template
+ * Email generation prompt template - generates structured HTML email
  */
 const emailPromptTemplate = PromptTemplate.fromTemplate(`
 You are an expert sales and marketing email copywriter. Your task is to draft a personalized, professional outreach email.
@@ -101,7 +100,15 @@ EMPLOYEE'S INTENT/INSTRUCTIONS:
 
 TARGET STATUS TRANSITION: {statusFrom} → {statusTo}
 
-GUIDELINES:
+IMPORTANT FORMATTING RULES:
+1. Structure the email with clear paragraphs separated by blank lines
+2. Use proper greeting (Dear [Name],)
+3. First paragraph: Opening and purpose
+4. Middle paragraphs: Key points, value proposition, or answers
+5. Final paragraph: Call-to-action
+6. Professional sign-off with name
+
+CONTENT GUIDELINES:
 1. Keep the email concise and professional (150-250 words)
 2. Personalize based on the lead's information and company context
 3. Include a clear call-to-action appropriate for the status transition
@@ -111,7 +118,7 @@ GUIDELINES:
 7. For MQL→SQL: Focus on qualifying questions and scheduling a call
 8. For SQL→OPPORTUNITY: Focus on specific solutions and next steps
 
-Generate ONLY the email body (no subject line). Start directly with the greeting.
+Generate the email body with proper paragraph breaks. Start with "Dear [Name]," greeting.
 `);
 
 /**
@@ -134,6 +141,45 @@ GUIDELINES:
 
 Generate ONLY the subject line, nothing else.
 `);
+
+/**
+ * Convert plain text email to structured HTML
+ */
+const formatEmailAsHtml = (plainText, employeeName, employeeEmail, companyName) => {
+  // Split into paragraphs and format
+  const paragraphs = plainText
+    .split(/\n\n+/)
+    .map(p => p.trim())
+    .filter(p => p.length > 0);
+
+  const htmlParagraphs = paragraphs.map(p => {
+    // Convert single line breaks to <br>
+    const formatted = p.replace(/\n/g, '<br>');
+    return `<p style="margin: 0 0 16px 0; line-height: 1.6;">${formatted}</p>`;
+  }).join('');
+
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 14px; color: #333333; line-height: 1.6; margin: 0; padding: 20px;">
+  <div style="max-width: 600px; margin: 0 auto;">
+    ${htmlParagraphs}
+    
+    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
+      <p style="margin: 0; font-weight: 600; color: #333;">${employeeName}</p>
+      <p style="margin: 4px 0 0 0; color: #666; font-size: 13px;">${companyName}</p>
+      <p style="margin: 4px 0 0 0; color: #666; font-size: 13px;">
+        <a href="mailto:${employeeEmail}" style="color: #0066cc; text-decoration: none;">${employeeEmail}</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>`.trim();
+};
 
 /**
  * Generate personalized outreach email using RAG
@@ -197,9 +243,18 @@ export const generateOutreachEmail = async ({
     }),
   ]);
 
+  // Format email as HTML
+  const htmlBody = formatEmailAsHtml(
+    emailBody.trim(),
+    employee.name,
+    employee.email,
+    companyName
+  );
+
   return {
     subject: subject.trim(),
     body: emailBody.trim(),
+    htmlBody,
     context: {
       documentsUsed: relevantDocs.length,
       statusTransition: `${statusFrom} → ${statusTo}`,

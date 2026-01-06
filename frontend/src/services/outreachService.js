@@ -60,3 +60,31 @@ export const sendEmails = async (emails) => {
   const response = await api.post('/outreach/send', { emails });
   return response.data;
 };
+
+/* ===================================================
+   AUTOPILOT API
+=================================================== */
+
+// Start autopilot mode
+export const startAutopilot = async (intervalMinutes = 5) => {
+  const response = await api.post('/outreach/autopilot/start', { intervalMinutes });
+  return response.data;
+};
+
+// Stop autopilot mode
+export const stopAutopilot = async () => {
+  const response = await api.post('/outreach/autopilot/stop');
+  return response.data;
+};
+
+// Get autopilot status
+export const getAutopilotStatus = async () => {
+  const response = await api.get('/outreach/autopilot/status');
+  return response.data;
+};
+
+// Get autopilot activity log
+export const getAutopilotLog = async (limit = 50) => {
+  const response = await api.get('/outreach/autopilot/log', { params: { limit } });
+  return response.data;
+};
