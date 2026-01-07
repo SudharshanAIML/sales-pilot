@@ -285,116 +285,159 @@ const ComparisonSection = () => {
       {
         id: 2,
         title: 'Company-Document RAG Email Personalization',
-        description: 'Uses internal PDFs, decks, playbooks for personalized outreach',
+        description: 'AI-powered email personalization using company documents and context',
         status: true
       },
       {
         id: 3,
         title: 'Independent Agentic Decision Engine',
-        description: 'AI decides who/when/what to act on independently',
+        description: 'AI decides who and when to contact, not just recommendations',
         status: true
       },
       {
         id: 4,
-        title: 'Explicit Assist vs Pilot Mode Toggle',
-        description: 'Switch between human-in-the-loop and full autonomy',
+        title: 'Explicit Assist Mode vs Full Pilot Mode Toggle',
+        description: 'Switch between AI assistance and full autonomous operation',
         status: true
       },
       {
         id: 5,
-        title: 'User-Controlled AI Communication Tone & Frequency',
-        description: 'Customize AI messaging style and cadence',
-        status: true
-      },
-      {
-        id: 6,
-        title: 'Self-Initiated Outreach Without Triggers',
-        description: 'AI starts actions proactively without manual triggers',
-        status: true
-      },
-      {
-        id: 7,
-        title: 'Auto Calendar Scheduling for Qualified Prospects',
-        description: 'Automatic meeting booking with qualified leads',
+        title: 'User-Controlled AI Message Tone + Frequency',
+        description: 'Customize AI communication style and cadence to match your brand',
         status: true
       }
     ],
     'Salesforce': [
       {
-        id: 4,
-        title: 'Explicit Assist vs Pilot Mode Toggle',
-        description: 'Limited / partial mode switching capabilities',
-        status: 'partial'
+        id: 1,
+        title: 'Fully Autonomous End-to-End Sales Execution',
+        description: 'Complete automation from prospecting to booking and CRM updates',
+        status: false
       },
       {
-        id: 7,
-        title: 'Auto Calendar Scheduling for Qualified Prospects',
-        description: 'Automatic meeting booking with qualified leads',
+        id: 2,
+        title: 'Company-Document RAG Email Personalization',
+        description: 'AI-powered email personalization using company documents and context',
+        status: false
+      },
+      {
+        id: 3,
+        title: 'Independent Agentic Decision Engine',
+        description: 'AI decides who and when to contact, not just recommendations',
+        status: false
+      },
+      {
+        id: 4,
+        title: 'Explicit Assist Mode vs Full Pilot Mode Toggle',
+        description: 'Switch between AI assistance and full autonomous operation',
         status: true
       },
       {
-        id: 8,
-        title: 'CRM Data Management & Reporting',
-        description: 'Comprehensive sales data tracking and analytics',
+        id: 5,
+        title: 'User-Controlled AI Message Tone + Frequency',
+        description: 'Customize AI communication style and cadence to match your brand',
         status: true
       }
     ],
     'HubSpot': [
       {
-        id: 6,
-        title: 'Self-Initiated Outreach',
-        description: 'Within predefined sequences, not fully autonomous',
-        status: 'partial'
+        id: 1,
+        title: 'Fully Autonomous End-to-End Sales Execution',
+        description: 'Complete automation from prospecting to booking and CRM updates',
+        status: false
       },
       {
-        id: 7,
-        title: 'Auto Calendar Scheduling for Qualified Prospects',
-        description: 'Automatic meeting booking with qualified leads',
+        id: 2,
+        title: 'Company-Document RAG Email Personalization',
+        description: 'AI-powered email personalization using company documents and context',
         status: true
       },
       {
-        id: 9,
-        title: 'Email Marketing Automation',
-        description: 'Template-based email campaigns and workflows',
+        id: 3,
+        title: 'Independent Agentic Decision Engine',
+        description: 'AI decides who and when to contact, not just recommendations',
+        status: false
+      },
+      {
+        id: 4,
+        title: 'Explicit Assist Mode vs Full Pilot Mode Toggle',
+        description: 'Switch between AI assistance and full autonomous operation',
+        status: false
+      },
+      {
+        id: 5,
+        title: 'User-Controlled AI Message Tone + Frequency',
+        description: 'Customize AI communication style and cadence to match your brand',
         status: true
       }
     ],
     'Zoho CRM': [
       {
+        id: 1,
+        title: 'Fully Autonomous End-to-End Sales Execution',
+        description: 'Complete automation from prospecting to booking and CRM updates',
+        status: false
+      },
+      {
+        id: 2,
+        title: 'Company-Document RAG Email Personalization',
+        description: 'AI-powered email personalization using company documents and context',
+        status: false
+      },
+      {
         id: 3,
         title: 'Independent Agentic Decision Engine',
-        description: 'Task-level, rule-trained decision making',
-        status: 'partial'
+        description: 'AI decides who and when to contact, not just recommendations',
+        status: true
       },
       {
-        id: 7,
-        title: 'Auto Calendar Scheduling for Qualified Prospects',
-        description: 'Basic calendar scheduling capabilities',
-        status: 'partial'
+        id: 4,
+        title: 'Explicit Assist Mode vs Full Pilot Mode Toggle',
+        description: 'Switch between AI assistance and full autonomous operation',
+        status: false
       },
       {
-        id: 10,
-        title: 'Lead Scoring & Assignment',
-        description: 'Rule-based lead qualification and routing',
+        id: 5,
+        title: 'User-Controlled AI Message Tone + Frequency',
+        description: 'Customize AI communication style and cadence to match your brand',
         status: true
       }
     ],
     'Odoo': [
       {
-        id: 7,
-        title: 'Auto Calendar Scheduling for Qualified Prospects',
-        description: 'Manual / non-AI scheduling',
-        status: 'partial'
+        id: 1,
+        title: 'Fully Autonomous End-to-End Sales Execution',
+        description: 'Complete automation from prospecting to booking and CRM updates',
+        status: false
       },
       {
-        id: 11,
-        title: 'Basic Sales Pipeline Management',
-        description: 'Traditional CRM pipeline tracking',
+        id: 2,
+        title: 'Company-Document RAG Email Personalization',
+        description: 'AI-powered email personalization using company documents and context',
+        status: false
+      },
+      {
+        id: 3,
+        title: 'Independent Agentic Decision Engine',
+        description: 'AI decides who and when to contact, not just recommendations',
+        status: false
+      },
+      {
+        id: 4,
+        title: 'Explicit Assist Mode vs Full Pilot Mode Toggle',
+        description: 'Switch between AI assistance and full autonomous operation',
+        status: true
+      },
+      {
+        id: 5,
+        title: 'User-Controlled AI Message Tone + Frequency',
+        description: 'Customize AI communication style and cadence to match your brand',
         status: true
       }
     ]
   };
 
+  const salesPilotFeatures = allFeatures['SalesPilot'];
   const competitorFeatures = allFeatures[selectedCompetitor] || [];
 
   return (
@@ -427,7 +470,7 @@ const ComparisonSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex justify-center mb-12"
+          className="flex justify-center mb-16"
         >
           <div className="inline-flex bg-white rounded-full p-2 border border-sky-200 shadow-lg shadow-sky-500/10">
             {competitors.map((competitor) => (
@@ -446,92 +489,80 @@ const ComparisonSection = () => {
           </div>
         </motion.div>
 
-        {/* Two Column Layout */}
+        {/* Feature Comparison - 2 Column Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Competitor Features - Top */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="lg:col-span-2"
-          >
-            <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-slate-900 mb-2">{selectedCompetitor}</h3>
-              <p className="text-slate-600">Available features in {selectedCompetitor}</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {competitorFeatures.map((feature, index) => (
-                <motion.div
-                  key={feature.id}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="bg-white border-2 border-slate-200 rounded-3xl p-8 hover:shadow-xl hover:shadow-slate-500/10 transition-all hover:scale-105 hover:border-slate-300"
-                >
-                  <h4 className="text-lg font-bold text-slate-900 mb-2">{feature.title}</h4>
-                  <p className="text-sm text-slate-600 mb-4">{feature.description}</p>
-                  
+          {salesPilotFeatures
+            .map(spFeature => {
+              const compFeature = competitorFeatures.find(f => f.id === spFeature.id);
+              return { spFeature, compFeature };
+            })
+            .sort((a, b) => {
+              // Sort: available/partial features first, then not available
+              const aHasFeature = a.compFeature?.status === true || a.compFeature?.status === 'partial';
+              const bHasFeature = b.compFeature?.status === true || b.compFeature?.status === 'partial';
+              if (aHasFeature && !bHasFeature) return -1;
+              if (!aHasFeature && bHasFeature) return 1;
+              return 0;
+            })
+            .map(({ spFeature, compFeature }, index) => (
+              <motion.div
+                key={spFeature.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all"
+              >
+                {/* Feature Title */}
+                <h3 className="text-xl font-bold text-slate-900 mb-2">{spFeature.title}</h3>
+                <p className="text-sm text-slate-600 mb-6">{spFeature.description}</p>
+
+                {/* Comparison Row */}
+                <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                  {/* SalesPilot Status */}
                   <div className="flex items-center gap-2">
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
-                      feature.status === 'partial' 
-                        ? 'bg-amber-100' 
+                    <div className="w-8 h-8 bg-sky-500 rounded-full flex items-center justify-center">
+                      <Check className="text-white" size={14} strokeWidth={3} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-sky-600">SalesPilot</p>
+                      <p className="text-[10px] text-green-600 font-semibold">Available</p>
+                    </div>
+                  </div>
+
+                  {/* Competitor Status */}
+                  <div className="flex items-center gap-2">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                      compFeature?.status === false
+                        ? 'bg-slate-200'
+                        : compFeature?.status === 'partial'
+                        ? 'bg-amber-100'
                         : 'bg-green-100'
                     }`}>
-                      {feature.status === 'partial' ? (
+                      {compFeature?.status === false ? (
+                        <X className="text-slate-500" size={14} strokeWidth={3} />
+                      ) : compFeature?.status === 'partial' ? (
                         <div className="w-3 h-0.5 bg-amber-600 rounded" />
                       ) : (
                         <Check className="text-green-600" size={14} strokeWidth={3} />
                       )}
                     </div>
-                    <span className={`text-xs font-semibold ${
-                      feature.status === 'partial' ? 'text-amber-600' : 'text-green-600'
-                    }`}>
-                      {feature.status === 'partial' ? 'Partial' : 'Available'}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* SalesPilot Features - Bottom */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="lg:col-span-2 mt-8"
-          >
-            <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold bg-gradient-to-r from-sky-500 to-sky-700 bg-clip-text text-transparent mb-2">SalesPilot</h3>
-              <p className="text-slate-600">Complete AI-powered sales automation platform</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {allFeatures['SalesPilot'].map((feature, index) => (
-                <motion.div
-                  key={feature.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-gradient-to-br from-sky-50 to-white border-2 border-sky-200 rounded-3xl p-8 hover:shadow-2xl hover:shadow-sky-500/30 transition-all group hover:scale-105 hover:border-sky-400"
-                >
-                  <h4 className="text-lg font-bold text-slate-900 mb-2">{feature.title}</h4>
-                  <p className="text-sm text-slate-600 mb-4">{feature.description}</p>
-                  
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 bg-gradient-to-r from-sky-500 to-sky-600 rounded-full flex items-center justify-center shadow-lg shadow-sky-500/30">
-                      <Check className="text-white" size={14} strokeWidth={3} />
+                    <div>
+                      <p className="text-xs font-bold text-slate-700">{selectedCompetitor}</p>
+                      <p className={`text-[10px] font-semibold ${
+                        compFeature?.status === false
+                          ? 'text-slate-500'
+                          : compFeature?.status === 'partial'
+                          ? 'text-amber-600'
+                          : 'text-green-600'
+                      }`}>
+                        {compFeature?.status === false ? 'Not Available' : compFeature?.status === 'partial' ? 'Partial' : 'Available'}
+                      </p>
                     </div>
-                    <span className="text-xs font-semibold text-sky-600">Available</span>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+                </div>
+              </motion.div>
+            ))}
         </div>
 
         {/* CTA */}
@@ -540,7 +571,7 @@ const ComparisonSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center mt-16"
+          className="text-center mt-20"
         >
           <p className="text-slate-600 mb-6 text-lg">Ready to experience the future of sales automation?</p>
           <button 
