@@ -11,14 +11,14 @@ import { sendLeadEmail } from "../emails/email.service.js";
 --------------------------------------------------- */
 const updateContactTemperature = async (contactId) => {
   const avgRating = await sessionRepo.getOverallAverageRating(contactId);
-
+  
   let temperature = 'COLD';
   if (avgRating >= 8) {
     temperature = 'HOT';
   } else if (avgRating >= 6) {
     temperature = 'WARM';
   }
-
+  
   await contactRepo.updateTemperature(contactId, temperature);
   return temperature;
 };
@@ -69,10 +69,10 @@ export const updateContact = async (contactId, updates) => {
 export const createSessionAndUpdateTemperature = async (sessionData) => {
   // Create the session
   const sessionId = await sessionRepo.createSession(sessionData);
-
+  
   // Update contact temperature based on new average rating
   await updateContactTemperature(sessionData.contact_id);
-
+  
   return sessionId;
 };
 
@@ -95,62 +95,27 @@ export const getAllContactsWithEmployeeInfo = async (companyId, filters = {}) =>
 
 /* ---------------------------------------------------
    SYSTEM: LEAD → MQL (Marketing Automation)
-   Triggered by email click or landing page visit
-   - Converts LEAD to MQL
-   - Creates a session with rating 10
-   - Updates contact temperature
 --------------------------------------------------- */
 export const processLeadActivity = async ({ contactId, token }) => {
   const contact = await contactRepo.getById(contactId);
-  if (!contact) {
-    console.log(`⚠️ Contact ${contactId} not found for lead activity`);
-    return { converted: false, reason: "Contact not found" };
-  }
+  if (!contact) return;
 
-  // Security check - verify token matches (skip if no token provided)
-  if (token && contact.tracking_token && contact.tracking_token !== token) {
-    console.log(`⚠️ Token mismatch for contact ${contactId}`);
-    return { converted: false, reason: "Invalid token" };
-  }
+  // Security check
+  if (contact.tracking_token !== token) return;
 
   // Increase interest score
   await contactRepo.incrementInterestScore(contactId);
 
-  // Auto promote LEAD → MQL
+  // Auto promote
   if (contact.status === "LEAD") {
-    // Update status to MQL
     await contactRepo.updateStatus(contactId, "MQL");
-    
-    // Insert status history
     await contactRepo.insertStatusHistory(
       contactId,
       "LEAD",
       "MQL",
-      null // system - converted by email automation
+      null // system
     );
-
-    // Create a session with rating 10 for email automation conversion
-    await sessionRepo.createSession({
-      contact_id: contactId,
-      emp_id: contact.assigned_emp_id || null,
-      stage: "MQL",
-      mode_of_contact: "EMAIL",
-      rating: 10,
-      session_status: "COMPLETED",
-      remarks: "Converted by email automation - Lead clicked email and visited landing page",
-    });
-
-    // Update contact temperature based on the new session rating
-    await updateContactTemperature(contactId);
-
-    console.log(`🎉 Contact ${contactId} (${contact.name}) converted: LEAD → MQL via email automation`);
-    console.log(`   ✅ Session created with rating 10`);
-    console.log(`   ✅ Temperature updated`);
-    
-    return { converted: true, newStatus: "MQL" };
   }
-
-  return { converted: false, currentStatus: contact.status };
 };
 
 /* ---------------------------------------------------
@@ -306,7 +271,7 @@ export const getContactFinancials = async (contactId) => {
     (sum, opp) => sum + parseFloat(opp.expected_value || 0),
     0
   );
-
+  
   const totalDealValue = deals.reduce(
     (sum, deal) => sum + parseFloat(deal.deal_value || 0),
     0
@@ -327,8 +292,8 @@ export const getContactFinancials = async (contactId) => {
       totalExpectedValue,
       totalDeals: deals.length,
       totalDealValue,
-      conversionRate: opportunities.length > 0
-        ? Math.round((wonOpportunities.length / opportunities.length) * 100)
+      conversionRate: opportunities.length > 0 
+        ? Math.round((wonOpportunities.length / opportunities.length) * 100) 
         : 0,
     },
   };

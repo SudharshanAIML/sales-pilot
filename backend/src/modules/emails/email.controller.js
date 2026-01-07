@@ -1,7 +1,6 @@
 import * as emailService from "./email.service.js";
 import * as contactService from "../contacts/contact.service.js";
 import * as gmailService from "../../services/gmail.service.js";
-import * as contactRepo from "../contacts/contact.repo.js";
 
 /**
  * @desc   Track email click (LEAD → MQL conversion trigger)
@@ -15,14 +14,11 @@ export const trackClick = async (req, res, next) => {
 
     const { contactId } = await emailService.trackEmailClick(token);
 
-    // Get contact details for landing page personalization
-    const contact = await contactRepo.getById(contactId);
+    // Process lead activity (handles LEAD → MQL conversion)
+    await contactService.processLeadActivity({ contactId, token });
 
     // If tracking pixel request, return 1x1 transparent gif
     if (type === "pixel") {
-      // Process lead activity for pixel tracking too
-      await contactService.processLeadActivity({ contactId, token });
-
       const transparentPixel = Buffer.from(
         "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
         "base64"
@@ -32,62 +28,12 @@ export const trackClick = async (req, res, next) => {
       return res.end(transparentPixel);
     }
 
-    // Process lead activity BEFORE redirecting (LEAD → MQL conversion)
-    const result = await contactService.processLeadActivity({ contactId, token });
-    console.log(`📧 Email link clicked by contact ${contactId} (${contact?.name})`);
-    if (result.converted) {
-      console.log(`   ✅ Converted to ${result.newStatus}`);
-    }
-
-    // Redirect to landing page with contact info for personalization
-    const landingPageUrl = process.env.LANDING_PAGE_URL || "https://vpragadeesh.github.io/viewer/";
-    const redirectUrl = `${landingPageUrl}?cid=${contactId}&name=${encodeURIComponent(contact?.name || "")}&token=${token}`;
+    // Redirect to landing page
+    const redirectUrl = process.env.LANDING_PAGE_URL || "https://example.com/thank-you";
     res.redirect(redirectUrl);
   } catch (error) {
-    console.error("❌ Track click error:", error.message);
     // On error, still redirect but to a generic page
-    res.redirect(process.env.LANDING_PAGE_URL || "https://vpragadeesh.github.io/viewer/");
-  }
-};
-
-/**
- * @desc   Landing page callback - triggers LEAD → MQL conversion
- * @route  POST /track/visit
- * @access Public (called from landing page)
- */
-export const trackLandingPageVisit = async (req, res, next) => {
-  try {
-    const { contactId, token, name, page, userAgent, timestamp } = req.body;
-
-    if (!contactId) {
-      return res.status(400).json({ message: "contactId is required" });
-    }
-
-    // Get contact to verify
-    const contact = await contactRepo.getById(contactId);
-
-    if (!contact) {
-      return res.status(404).json({ message: "Contact not found" });
-    }
-
-    // Process lead activity (handles LEAD → MQL conversion)
-    const result = await contactService.processLeadActivity({
-      contactId: parseInt(contactId),
-      token: token || contact.tracking_token,
-    });
-
-    console.log(`🎯 Landing page visit tracked for contact ${contactId} (${name})`);
-    console.log(`   Page: ${page}, Time: ${timestamp}`);
-
-    res.json({
-      success: true,
-      message: "Visit tracked successfully",
-      converted: result.converted,
-      newStatus: result.newStatus || contact.status,
-    });
-  } catch (error) {
-    console.error("❌ Landing page tracking error:", error.message);
-    res.status(500).json({ message: "Failed to track visit" });
+    res.redirect(process.env.LANDING_PAGE_URL || "https://example.com");
   }
 };
 

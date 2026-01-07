@@ -13,14 +13,10 @@ const router = Router();
  * @desc    Track email click and trigger LEAD → MQL
  * @access  Public
  */
-router.get("/track/:token", emailController.trackClick);
-
-/**
- * @route   POST /track/visit
- * @desc    Landing page callback - triggers LEAD → MQL conversion
- * @access  Public (called from landing page)
- */
-router.post("/track/visit", emailController.trackLandingPageVisit);
+router.get(
+  "/track/:token",
+  emailController.trackClick
+);
 
 /* ---------------------------------------------------
    EMAIL CONNECTION STATUS
