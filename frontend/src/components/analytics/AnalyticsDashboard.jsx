@@ -20,7 +20,6 @@ import {
 } from "lucide-react";
 import { getComprehensiveAnalytics } from "../../services/analyticsService";
 import ProductAnalytics from "./ProductAnalytics";
-import RevenueAnalytics from "./RevenueAnalytics";
 
 // =============================================================================
 // CACHE CONFIGURATION - Inspired by SWR/React Query patterns used in Salesforce/HubSpot
@@ -74,7 +73,7 @@ export default function AnalyticsDashboard() {
   const [lastUpdated, setLastUpdated] = useState(() => 
     analyticsCache.timestamp ? new Date(analyticsCache.timestamp) : null
   );
-  const [activeTab, setActiveTab] = useState('overview'); // 'overview', 'products', or 'revenue'
+  const [activeTab, setActiveTab] = useState('overview'); // 'overview' or 'products'
   
   // Track if component is mounted to prevent state updates on unmount
   const isMountedRef = useRef(true);
@@ -311,19 +310,6 @@ export default function AnalyticsDashboard() {
             </div>
           </button>
           <button
-            onClick={() => setActiveTab('revenue')}
-            className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
-              activeTab === 'revenue'
-                ? 'border-sky-500 text-sky-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
-          >
-            <div className="flex items-center gap-2">
-              <Target className="w-4 h-4" />
-              <span>Revenue</span>
-            </div>
-          </button>
-          <button
             onClick={() => setActiveTab('products')}
             className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
               activeTab === 'products'
@@ -342,8 +328,6 @@ export default function AnalyticsDashboard() {
       {/* Tab Content */}
       {activeTab === 'products' ? (
         <ProductAnalytics />
-      ) : activeTab === 'revenue' ? (
-        <RevenueAnalytics />
       ) : (
         <>
           {/* Background refresh indicator */}
