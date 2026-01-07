@@ -24,7 +24,6 @@ const pool = mysql.createPool(cleanUrl, {
   ssl: {
     rejectUnauthorized: true, // required for Aiven
   },
-  timezone: process.env.DB_TIMEZONE || '+05:30', // Indian Standard Time (IST)
 });
 
 // Test DB connection on startup

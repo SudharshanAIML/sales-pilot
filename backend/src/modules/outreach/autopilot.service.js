@@ -5,9 +5,9 @@ import { StringOutputParser } from "@langchain/core/output_parsers";
 import * as gmailService from "../../services/gmail.service.js";
 import * as employeeRepo from "../employees/employee.repo.js";
 import * as companyRepo from "../companies/company.repo.js";
+import * as contactRepo from "../contacts/contact.repo.js";
 import { similaritySearch } from "./outreach.rag.js";
 import { db } from "../../config/db.js";
-import { formatDateIST } from "../../utils/timezone.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -18,7 +18,7 @@ const activeAutopilots = new Map();
 // Initialize Groq LLM
 const llm = new ChatGroq({
   apiKey: process.env.GROQ_API_KEY,
-  model: process.env.GROQ_MODEL || "llama-3.1-8b-instant",
+  model: process.env.GROQ_MODEL || "llama-3.3-70b-versatile",
   temperature: 0.7,
   maxTokens: 4096,
 });
@@ -199,8 +199,7 @@ const generateReply = async ({ email, analysis, employee, company, companyId }) 
  * Process inbox and auto-reply to emails
  */
 const processInbox = async (empId, companyId) => {
-  const timestamp = formatDateIST(new Date());
-  console.log(`🤖 [AutoPilot] [${timestamp}] Processing inbox for employee ${empId}`);
+  console.log(`🤖 [AutoPilot] Processing inbox for employee ${empId}`);
 
   try {
     // Check if autopilot is still active
@@ -326,8 +325,7 @@ export const startAutopilot = async (empId, companyId, intervalMinutes = 1) => {
   // Stop existing autopilot if any
   stopAutopilot(empId);
 
-  const timestamp = formatDateIST(new Date());
-  console.log(`🚀 [AutoPilot] [${timestamp}] Starting for employee ${empId} (interval: ${intervalMinutes} min)`);
+  console.log(`🚀 [AutoPilot] Starting for employee ${empId} (interval: ${intervalMinutes} min)`);
 
   // Save autopilot status to DB
   await db.query(
@@ -394,8 +392,8 @@ export const getAutopilotStatus = async (empId) => {
   return {
     isActive: isActiveInMemory && rows[0].is_active === 1,
     intervalMinutes: rows[0].interval_minutes,
-    startedAt: rows[0].started_at ? formatDateIST(rows[0].started_at) : null,
-    stoppedAt: rows[0].stopped_at ? formatDateIST(rows[0].stopped_at) : null,
+    startedAt: rows[0].started_at,
+    stoppedAt: rows[0].stopped_at,
   };
 };
 
@@ -407,13 +405,7 @@ export const getAutopilotLog = async (empId, limit = 50) => {
     `SELECT * FROM autopilot_log WHERE emp_id = ? ORDER BY created_at DESC LIMIT ?`,
     [empId, limit]
   );
-  
-  // Convert timestamps to IST for display
-  return rows.map(row => ({
-    ...row,
-    created_at: formatDateIST(row.created_at),
-    reply_sent_at: row.reply_sent_at ? formatDateIST(row.reply_sent_at) : null,
-  }));
+  return rows;
 };
 
 /**

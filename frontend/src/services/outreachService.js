@@ -66,9 +66,8 @@ export const sendEmails = async (emails) => {
 =================================================== */
 
 // Start autopilot mode
-export const startAutopilot = async (intervalMinutes = 1) => {
-  const response = await api.post('/outreach/autopilot/start', { inter
-    valMinutes });
+export const startAutopilot = async (intervalMinutes = 5) => {
+  const response = await api.post('/outreach/autopilot/start', { intervalMinutes });
   return response.data;
 };
 
