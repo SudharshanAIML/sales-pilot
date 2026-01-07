@@ -12,8 +12,12 @@ if (!DATABASE_URL) {
   process.exit(1);
 }
 
+// Parse the DATABASE_URL and create pool
+// Remove ssl-mode from URL as we'll configure SSL separately
+const cleanUrl = DATABASE_URL.replace(/[?&]ssl-mode=[^&]*/gi, '');
+
 // Create connection pool using URI
-const pool = mysql.createPool(DATABASE_URL, {
+const pool = mysql.createPool(cleanUrl, {
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -30,7 +34,9 @@ const pool = mysql.createPool(DATABASE_URL, {
     connection.release();
   } catch (error) {
     console.error("❌ Failed to connect to MySQL:", error.message);
-    process.exit(1);
+    console.error("Full error:", error);
+    // Don't exit, let the app handle it
+    // process.exit(1);
   }
 })();
 
