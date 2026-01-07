@@ -27,6 +27,7 @@ import emailRoutes from "./modules/emails/email.routes.js";
 import analyticsRoutes from "./modules/analytics/analytics.routes.js";
 import taskRoutes from "./modules/tasks/task.routes.js";
 import outreachRoutes from "./modules/outreach/outreach.routes.js";
+import deliveryTrackerRoutes from "./modules/delivery/delivery.routes.js";
 
 // Initialize Express app
 const app = express();
@@ -149,6 +150,9 @@ app.use("/api/tasks", taskRoutes);
 
 // AI Outreach routes (RAG-powered email generation)
 app.use("/api/outreach", outreachRoutes);
+
+// Delivery Tracker routes
+app.use("/api/delivery", deliveryTrackerRoutes);
 
 /* =====================================================
    404 HANDLER

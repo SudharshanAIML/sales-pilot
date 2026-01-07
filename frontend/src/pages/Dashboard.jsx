@@ -9,6 +9,7 @@ import Profile from '../components/layout/Profile';
 import AnalyticsDashboard from '../components/analytics/AnalyticsDashboard';
 import CalendarView from '../components/calendar/CalendarView';
 import { GmailView } from '../components/gmail';
+import DeliveryNotificationLogs from './DeliveryNotificationLogs';
 import { getContacts, createContact, updateContact, promoteToMQL, promoteToSQL, convertToOpportunity } from '../services/contactService';
 import { createSession } from '../services/sessionService';
 import { Bell, Menu, X, Settings, LogOut, User, ChevronDown } from 'lucide-react';
@@ -310,6 +311,8 @@ const Dashboard = () => {
             <CalendarView />
           ) : activeView === 'gmail' ? (
             <GmailView />
+          ) : activeView === 'delivery' ? (
+            <DeliveryNotificationLogs />
           ) : (
             <ContactGrid
               contacts={contacts}

@@ -13,7 +13,8 @@ import {
   ChevronRight,
   LayoutGrid,
   CalendarDays,
-  Mail
+  Mail,
+  Truck
 } from 'lucide-react';
 
 const Sidebar = ({ activeStage, onStageChange, contactCounts = {}, collapsed, onToggle, onViewChange, activeView = 'contacts' }) => {
@@ -201,6 +202,18 @@ const Sidebar = ({ activeStage, onStageChange, contactCounts = {}, collapsed, on
             >
               <BarChart3 className="w-5 h-5 flex-shrink-0" />
               {!collapsed && <span className="font-medium text-sm">Analytics</span>}
+            </button>
+            <button
+              onClick={() => onViewChange && onViewChange('delivery')}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
+                activeView === 'delivery'
+                  ? 'bg-orange-100 text-orange-700'
+                  : 'text-gray-600 hover:bg-gray-50'
+              } ${collapsed ? 'justify-center px-2' : ''}`}
+              title="Delivery Tracker"
+            >
+              <Truck className="w-5 h-5 flex-shrink-0" />
+              {!collapsed && <span className="font-medium text-sm">Delivery Tracker</span>}
             </button>
             <button
               onClick={() => navigate('/settings')}
