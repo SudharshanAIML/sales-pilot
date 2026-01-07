@@ -12,7 +12,7 @@ export const startAutopilot = async (req, res, next) => {
     const result = await autopilotService.startAutopilot(
       req.user.empId,
       req.user.companyId,
-      intervalMinutes || 5
+      intervalMinutes || 1
     );
 
     res.json(result);

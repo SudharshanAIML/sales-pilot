@@ -10,7 +10,7 @@ dotenv.config();
 // Initialize Groq LLM with the specified model
 const llm = new ChatGroq({
   apiKey: process.env.GROQ_API_KEY,
-  model: "llama-3.1-70b-versatile",
+  model: process.env.GROQ_MODEL || "llama-3.1-8b-instant",
   temperature: 0.7,
 });
 

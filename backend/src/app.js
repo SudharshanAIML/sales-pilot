@@ -4,6 +4,7 @@ import helmet from "helmet";
 import compression from "compression";
 import rateLimit from "express-rate-limit";
 import dotenv from "dotenv";
+import { toISOStringIST } from "./utils/timezone.js";
 
 // Load environment variables
 dotenv.config();
@@ -118,7 +119,7 @@ app.get("/", (req, res) => {
     success: true,
     message: "CRM API is running",
     version: "1.0.0",
-    timestamp: new Date().toISOString(),
+    timestamp: toISOStringIST(),
   });
 });
 
@@ -223,7 +224,7 @@ const server = app.listen(PORT, HOST, () => {
 ║                                                           ║
 ║   📍 URL: http://${HOST}:${PORT}                          
 ║   🌍 Environment: ${process.env.NODE_ENV || "development"}                       
-║   📅 Started at: ${new Date().toISOString()}    
+║   📅 Started at: ${toISOStringIST()}    
 ║                                                           ║
 ╚═══════════════════════════════════════════════════════════╝
 
