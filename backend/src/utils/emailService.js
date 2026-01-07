@@ -270,7 +270,7 @@ export const sendDelayNotificationEmail = async ({
                     </p>
                     
                     <p style="margin: 0 0 20px; color: #374151; font-size: 16px; line-height: 1.6;">
-                      We regret to inform you that your order has been delayed. We sincerely apologize for any inconvenience this may cause.
+                      We want to proactively inform you that your order is experiencing a delay. We sincerely apologize for any inconvenience this may cause.
                     </p>
                     
                     <!-- Order Details Box -->
@@ -290,8 +290,8 @@ export const sendDelayNotificationEmail = async ({
                           <td style="padding: 8px 0; border-bottom: 1px solid #fcd34d;">${expectedDeliveryDate}</td>
                         </tr>
                         <tr>
-                          <td style="padding: 8px 0; border-bottom: 1px solid #fcd34d;"><strong>Delay:</strong></td>
-                          <td style="padding: 8px 0; border-bottom: 1px solid #fcd34d; color: #dc2626; font-weight: bold;">${delayHours} hours</td>
+                          <td style="padding: 8px 0; border-bottom: 1px solid #fcd34d;"><strong>Expected Delay:</strong></td>
+                          <td style="padding: 8px 0; border-bottom: 1px solid #fcd34d; color: #dc2626; font-weight: bold;">~${delayHours} hours</td>
                         </tr>
                         <tr>
                           <td style="padding: 8px 0;"><strong>Reason:</strong></td>
