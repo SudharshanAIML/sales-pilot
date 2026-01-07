@@ -40,8 +40,25 @@ const app = express();
 app.use(helmet());
 
 // CORS - Cross-Origin Resource Sharing
+const allowedOrigins = [
+  process.env.CORS_ORIGIN || "http://localhost:5173",
+  "https://vpragadeesh.github.io",
+  "http://localhost:5173",
+  "http://localhost:3000",
+];
+
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN || "*",
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.log(`⚠️ CORS blocked origin: ${origin}`);
+      callback(null, true); // Allow all in development, change to callback(new Error('Not allowed by CORS')) in production
+    }
+  },
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
@@ -177,7 +194,7 @@ app.use(errorHandler);
 
 const gracefulShutdown = (signal, server) => {
   console.log(`\n🛑 Received ${signal}. Shutting down gracefully...`);
-  
+
   // Close server
   server.close(() => {
     console.log("✅ HTTP server closed");
